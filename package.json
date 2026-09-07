@@ -1,5 +1,5 @@
 {
-  "name": "sdd-credit-calculator-example",
+  "name": "sdd-credit-calculator-stage-4-example",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -11,11 +11,14 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4174 --strictPort",
     "typecheck": "tsc --noEmit",
+    "test:runtime": "tsx --test test/calculator.test.ts",
+    "test:contract": "tsx --test test/repository-contract.test.ts",
     "test": "tsx --test test/*.test.ts",
     "validate:links": "tsx scripts/check-local-links.ts",
     "privacy:scan": "tsx scripts/privacy-scan.ts",
-    "openspec:validate": "openspec validate --all --strict && openspec validate --archived --strict",
-    "check": "npm run typecheck && npm test && npm run validate:links && npm run privacy:scan && npm run openspec:validate && npm run build"
+    "check:code": "npm run typecheck && npm test && npm run validate:links && npm run privacy:scan && npm run build",
+    "check:store": "tsx scripts/check-openspec-store.ts",
+    "check": "npm run check:code && npm run check:store"
   },
   "devDependencies": {
     "@fission-ai/openspec": "1.12.0",

@@ -1,52 +1,34 @@
-# 3‑ИИ: новый Change общей суммы и переплаты
+# ИИ-предпроверка R4
 
-Этот необязательный шаг выполняется после сохранённого ручного R3. Рабочая ветка — `course/your_login/stage-3-ai-payment-summary`, созданная от личной `course/your_login/stage-3-reset-years`. Используйте уже настроенный OpenCode-проект; не повторяйте ручной Change.
-
-Скопируйте сообщение в OpenCode:
+Подставьте значения, затем отправьте сообщение OpenCode из корня сервиса:
 
 ```text
-Прочитай AGENTS.md, README.md, фактически существующие main specs,
-docs/course/requirements-traceability.md и ВЕСЬ активный Change
-openspec/changes/add-reset-and-years-term. Если существует
-docs/course/stage-2-transfer.md, используй его только как дополнительное
-provenance непрерывного маршрута; для standalone-входа этот файл не нужен.
+CHANGE=<ACCEPTED_CHANGE>
+PLANNING_SHA=<40_CHARACTER_PLANNING_SHA>
+SERVICE_SHA=<40_CHARACTER_SERVICE_SHA>
+META_DIR=<PATH_TO_EXISTING_PERSONAL_META>
 
-Проверь, что открыта личная ветка
-course/your_login/stage-3-ai-payment-summary от
-course/your_login/stage-3-reset-years, и покажи git status. Ничего не
-сбрасывай. Baseline называй подтверждённым только там, где его доказывают
-фактические main specs, существующий код и тесты. Всё будущее поведение
-сохраняй в активных Changes с pending tasks.
+Проверь, что пользователь явно назвал разрешённые service root и META_DIR, а
+текущая сессия имеет доступ к обоим. Прочитай AGENTS.md, README.md, DESIGN.md,
+docs/developer-handoff.md и AGENTS.md из META_DIR. Если второй root или его
+AGENTS.md недоступен, остановись: Store pointer не предоставляет файловые права.
+Проверь, что HEAD сервиса точно равен SERVICE_SHA, а HEAD META_DIR точно равен
+PLANNING_SHA; покажи ветки и чистоту обеих рабочих копий.
 
-Цель — отдельный OpenSpec Change add-payment-summary. Если его каталог уже
-существует хотя бы частично, до любых записей выполни только read-only
-проверку: покажи status, прочитай существующие файлы, перечисли существующие
-и недостающие артефакты и спроси, продолжать ли ЭТОТ ЖЕ Change. На этом
-закончи ответ и ничего не меняй, пока я явно не подтвержу. После подтверждения
-сохрани существующие решения, продолжи тот же Change и не вызывай new
-повторно. Если каталога нет, создай Change. Сохрани add-reset-and-years-term
-целиком.
+Из сервиса без --store выполни openspec list --json и status --change CHANGE
+--json. Подтверди root.source=declared, Store ID
+sdd-credit-calculator-product-meta и одинаковый ожидаемый root. Прочитай
+requirements, design и pending tasks Change в meta; код и runtime-тесты — в
+настоящем сервисном checkout. .workspace используй только для чтения.
 
-Новое требование: после успешного расчёта показать общую сумму выплат и
-переплату. Обе величины считай из неокруглённого платежа, затем отображай
-в целых рублях. При ошибке и reset все три результата возвращаются к «—»;
-унаследованные правила выбранного режима срока, reset и перевода лет не
-изменяй.
+Составь inventory requirement -> scenario -> pending task -> code/runtime
+check и перечисли пробелы. Не переноси planning в сервис, не создавай
+specs/changes/history, не меняй регистрацию Store или defaultStore.
 
-Подготовь полный spec-driven пакет: proposal, delta specs, design и tasks.
-Для каждого будущего поведения оставь отдельную task - [ ] и точную
-проверку. Сверь количество требований, сценариев и tasks по фактическим
-файлам, обнови матрицу прослеживаемости и покажи diff.
-
-Не меняй приложение, runtime-тесты или main specs, не запускай Apply,
-не закрывай tasks, не архивируй Changes и не выполняй commit/push/PR.
-ИИ-проверка не является человеческим review.
+Это только read-only предпроверка. Не запускай Apply, не меняй код, тесты или
+tasks и не делай commit/push. Закончи планом и дождись явного разрешения,
+относящегося к этому CHANGE и проверенным SHA.
 ```
 
-Если агент начал менять частичный Change до подтверждения, отправьте:
-
-```text
-STOP. Больше ничего не меняй. Покажи git status и git diff только для openspec/changes/add-payment-summary, перечисли уже существующие решения и незавершённые артефакты. Ничего не удаляй и не создавай заново. Дождись моего явного подтверждения продолжить ЭТОТ ЖЕ Change.
-```
-
-После ответа проверьте созданные файлы сами. Если формула, очистка результатов, унаследованный Change или число сценариев/tasks расходятся с файлами, верните конкретное замечание и повторите проверку после исправления. Разрешённый отдельный PR имеет source `course/your_login/stage-3-ai-payment-summary` и base `course/your_login/stage-3-reset-years`, не общую `main`.
+Инструкции в `.opencode/skills` задают поведение инструмента, но не заменяют
+принятые requirements, Change или человеческое review.

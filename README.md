@@ -5,7 +5,7 @@
 `sdd-credit-calculator-product-meta`. Старый planning R3 сюда не мигрируется и
 не копируется.
 
-Исходный сервисный baseline сохранён в Git-истории из
+Исходное сервисное состояние сохранено в Git-истории из
 [`sdd-credit-calculator-example`](https://github.com/apolenkov/sdd-guide-credit-calculator-stage-3)
 на SHA `0e9d67e826acf5f95087be9a5a83ade23421e9b0`. Действующая точка старта R4 —
 отдельный `SERVICE_SHA`, который сообщает организатор.
@@ -77,7 +77,7 @@ npm run check:store
 ## Перед Apply
 
 Apply разрешён только после того, как review требований и tasks относится к
-точному `PLANNING_SHA`, review кода и runtime baseline — к точному
+точному `PLANNING_SHA`, review кода и рабочего состояния — к точному
 `SERVICE_SHA`, а владелец явно назвал разрешённый Change и охват. До этого
 доступны только read-only проверки; код, тесты и Store tasks не меняются.
 

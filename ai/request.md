@@ -2,9 +2,12 @@
 
 Подставьте значения, затем отправьте сообщение OpenCode из корня сервиса:
 
+`PLANNING_SHA` ниже — SHA принятого итогового состояния R4, а не исходный SHA
+R3 из planning provenance и не `IMPORT_BASE_SHA`.
+
 ```text
 CHANGE=<ACCEPTED_CHANGE>
-PLANNING_SHA=<40_CHARACTER_PLANNING_SHA>
+PLANNING_SHA=<40_CHARACTER_ACCEPTED_R4_PLANNING_SHA>
 SERVICE_SHA=<40_CHARACTER_SERVICE_SHA>
 META_DIR=<PATH_TO_EXISTING_PERSONAL_META>
 

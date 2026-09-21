@@ -35,3 +35,33 @@ test("local planning and copied Stage 3 planning are unsupported", async () => {
     ].map(assertMissing)
   );
 });
+
+test("developer handoff reuses the prepared canonical checkouts", async () => {
+  const [readme, handoff, manifest] = await Promise.all([
+    readFile(join(root, "README.md"), "utf8"),
+    readFile(join(root, "docs/developer-handoff.md"), "utf8"),
+    readFile(join(root, "package.json"), "utf8"),
+  ]);
+  const legacyRepositoryNames =
+    /sdd-credit-calculator-(?:example|stage-4-example|product-meta-example)/u;
+
+  assert.doesNotMatch(readme, legacyRepositoryNames);
+  assert.doesNotMatch(handoff, legacyRepositoryNames);
+  assert.equal(
+    JSON.parse(manifest).name,
+    "sdd-guide-credit-calculator-stage-4-code"
+  );
+  assert.match(
+    handoff,
+    /CODE_DIR=.*sdd-guide-credit-calculator-stage-4-code/u
+  );
+  assert.match(handoff, /Если подготовленной папки кода нет/u);
+  assert.equal(handoff.match(/^set -eu$/gmu)?.length, 2);
+  assert.match(handoff, /meta_status="\$\(git -C "\$META_DIR" status/u);
+  assert.match(handoff, /code_status="\$\(git -C "\$CODE_DIR" status/u);
+  assert.doesNotMatch(handoff, /test -z "\$\(git .* status/u);
+  assert.match(
+    handoff,
+    /`PLANNING_SHA`.*итогов.*R4.*не.*исходн.*R3.*не.*`IMPORT_BASE_SHA`/su
+  );
+});

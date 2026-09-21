@@ -5,8 +5,8 @@
 `sdd-credit-calculator-product-meta`. Старый planning R3 сюда не мигрируется и
 не копируется.
 
-Исходное сервисное состояние сохранено в Git-истории из
-[`sdd-credit-calculator-example`](https://github.com/apolenkov/sdd-guide-credit-calculator-stage-3)
+Исходный сервисный baseline сохранён в Git-истории из
+[`sdd-guide-credit-calculator-stage-3`](https://github.com/apolenkov/sdd-guide-credit-calculator-stage-3)
 на SHA `0e9d67e826acf5f95087be9a5a83ade23421e9b0`. Действующая точка старта R4 —
 отдельный `SERVICE_SHA`, который сообщает организатор.
 
@@ -24,37 +24,26 @@
 
 ## Чистый старт R4
 
-Организатор передаёт полный `SERVICE_SHA` из этого репозитория, полный принятый
-`PLANNING_SHA`, имя Change и путь уже существующего соседнего personal meta.
-Store должен быть зарегистрирован заранее. Не переносите старый planning и не
-перерегистрируйте Store из сервиса. Пользователь явно называет оба разрешённых
-root; текущая сессия должна иметь доступ к ним и прочитать оба `AGENTS.md`.
-Store pointer сам по себе не предоставляет файловые права.
+Полный `setup-analysis-workspace` из репозитория требований уже подготовил
+рядом чистый checkout `sdd-guide-credit-calculator-stage-4-code` на точном
+`SERVICE_SHA`. Это основной путь: повторно клонировать сервис не нужно. Если
+папки действительно нет, используйте только recovery из
+[передачи разработчику](docs/developer-handoff.md); существующую папку не
+заменяйте и не переключайте.
 
-```bash
-SERVICE_REPOSITORY='https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git'
-SERVICE_SHA='<40_CHARACTER_SERVICE_SHA>'
-PLANNING_SHA='<40_CHARACTER_PLANNING_SHA>'
-CHANGE='<ACCEPTED_CHANGE>'
-META_DIR='../sdd-credit-calculator-product-meta-example'
-PERSONAL_BRANCH='course/<login>/stage-4-<change>'
+В этой инструкции `PLANNING_SHA` — полный SHA принятого итогового состояния R4
+в `sdd-guide-credit-calculator-stage-4-requirements`. Это не исходный SHA R3,
+записанный как provenance, и не `IMPORT_BASE_SHA`, с которого начинался анализ.
+Организатор также передаёт полный `SERVICE_SHA`, имя принятого Change и пути к
+обоим соседним checkout. Store должен быть зарегистрирован заранее.
 
-git clone "$SERVICE_REPOSITORY"
-cd sdd-credit-calculator-stage-4-example
-git cat-file -e "$SERVICE_SHA^{commit}"
-test "$(git rev-parse "$SERVICE_SHA^{commit}")" = "$SERVICE_SHA"
-git switch -c "$PERSONAL_BRANCH" "$SERVICE_SHA"
-test "$(git rev-parse HEAD)" = "$SERVICE_SHA"
+Из корня требований проверьте оба точных SHA и чистоту, затем создайте личную
+ветку кода от `SERVICE_SHA`. Точные fail-closed команды и recovery приведены в
+[инструкции разработчика](docs/developer-handoff.md). Пользователь явно называет
+оба разрешённых root; текущая сессия должна иметь доступ к ним и прочитать оба
+`AGENTS.md`. Store pointer сам по себе не предоставляет файловые права.
 
-git -C "$META_DIR" cat-file -e "$PLANNING_SHA^{commit}"
-test "$(git -C "$META_DIR" rev-parse HEAD)" = "$PLANNING_SHA"
-git status --short --branch
-git -C "$META_DIR" status --short --branch
-npm ci
-```
-
-Обе рабочие копии должны быть ожидаемыми и чистыми. Затем проверьте неявный
-Store pointer из корня сервиса:
+После создания ветки проверьте неявный Store pointer из корня сервиса:
 
 ```bash
 npm exec openspec -- list --json
@@ -77,7 +66,7 @@ npm run check:store
 ## Перед Apply
 
 Apply разрешён только после того, как review требований и tasks относится к
-точному `PLANNING_SHA`, review кода и рабочего состояния — к точному
+точному `PLANNING_SHA`, review кода и runtime baseline — к точному
 `SERVICE_SHA`, а владелец явно назвал разрешённый Change и охват. До этого
 доступны только read-only проверки; код, тесты и Store tasks не меняются.
 

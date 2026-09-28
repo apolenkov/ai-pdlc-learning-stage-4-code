@@ -129,6 +129,6 @@ runtime-тесты, Store tasks или запускать Apply.
   итогового SHA сервиса;
 - planning validation и review фиксируются отдельно для точного SHA meta.
 
-Commits, push, PR, merge, archive и обновление service pin остаются отдельными
+Commits, push, MR, merge, archive и обновление service pin остаются отдельными
 действиями в разрешённых репозиториях. OpenSpec Store не объединяет их
 автоматически.

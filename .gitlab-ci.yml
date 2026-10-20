@@ -1,13 +1,21 @@
-check:
-  stage: test
-  image:
-    name: node:22-bullseye
-    entrypoint: [""]
-  tags:
-    - docker
+workflow:
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_REF_PROTECTED == "true" && $CI_PROJECT_PATH == "example-group/sdd-guide-credit-calculator-stage-4-code"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - when: never
+
+default:
+  tags: [img-build]
+  interruptible: true
+
+build:
+  stage: build
+  image:
+    name: node:26.12.0-alpine
+    entrypoint: [""]
   timeout: 10m
   script:
     - npm ci
-    - npm run check:code
+    - npm run build

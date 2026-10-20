@@ -18,13 +18,14 @@
     "privacy:scan": "tsx scripts/privacy-scan.ts",
     "check:code": "npm run typecheck && npm test && npm run validate:links && npm run privacy:scan && npm run build",
     "check:store": "tsx scripts/check-openspec-store.ts",
-    "check": "npm run check:code && npm run check:store"
+    "check": "npm run check:code && npm run check:store",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
-    "@fission-ai/openspec": "1.12.0",
-    "@types/node": "^24.3.0",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.3"
+    "@fission-ai/openspec": "^1.14.3",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
   }
 }

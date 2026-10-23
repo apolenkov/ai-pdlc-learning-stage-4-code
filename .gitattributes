@@ -1,0 +1,5 @@
+# OpenSpec generator output: `openspec update` rewrites these files, they are
+# generated rather than authored, so split advice does not apply. Exempt them
+# from the global agent-size-guard (its 20 000-byte limit targets authored files).
+.opencode/skills/openspec-*/** linguist-generated
+.opencode/commands/** linguist-generated

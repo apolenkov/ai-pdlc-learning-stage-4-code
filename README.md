@@ -1,16 +1,32 @@
-# Ступень 4: разработка с OpenSpec Store
+# Практикум разработки: сервис, который читает требования из OpenSpec Store
 
-Это чистый сервисный вход R4. Приложение и runtime-тесты находятся здесь,
-а принятые требования и tasks — в соседнем personal meta через Store
-`sdd-credit-calculator-product-meta`. Старый planning R3 сюда не мигрируется и
-не копируется.
+Это сервисный репозиторий кредитного калькулятора: код и runtime-тесты. Он завершает маршрут курса
+после шагов 1–5 и 6а/6б: требования принимаются в соседнем метарепозитории, а здесь разработчик
+реализует принятый Change.
+
+| | |
+| --- | --- |
+| Шаг курса | [Практикум разработки](https://apolenkov.github.io/customdev-learning/guides/d1-delivery.html) |
+| Вход | Принятые требования и tasks в соседнем метарепозитории `sdd-guide-credit-calculator-stage-4-requirements` (Store `sdd-credit-calculator-product-meta`) и выданный `SERVICE_SHA` |
+| Действие | Разработчик в личной ветке реализует принятый Change в `src/` и тестах; требования меняются только в метарепозитории |
+| Результат | PR в свой fork кода с результатом `npm run check` и SHA планирования, начального и итогового кода |
+
+**С чего начать.** На GitHub нажмите **Fork**. Если вы работаете в GitLab, создайте проект через
+**New project → Import project → Repository by URL** и вставьте адрес
+`https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git`. Адрес `origin` оставьте
+адресом upstream, а свой fork добавьте вторым remote: проверка в
+[передаче разработчику](docs/developer-handoff.md) сверяет `origin` с этим адресом.
+
+## Границы репозиториев
+
+Приложение и runtime-тесты находятся здесь, а принятые требования и tasks — в соседнем personal meta
+через Store `sdd-credit-calculator-product-meta`. Старый planning R3 сюда не мигрируется и не
+копируется.
 
 Исходный сервисный baseline сохранён в Git-истории из
 [`sdd-guide-credit-calculator-stage-3`](https://github.com/apolenkov/sdd-guide-credit-calculator-stage-3)
 на SHA `0e9d67e826acf5f95087be9a5a83ade23421e9b0`. Действующая точка старта R4 —
 отдельный `SERVICE_SHA`, который сообщает организатор.
-
-## Границы репозиториев
 
 | Артефакт | Где изменяется |
 | --- | --- |
@@ -23,7 +39,7 @@
 другие стандартные агенты), `.kilo/command` — команды Kilo; каталог не содержит и не
 дублирует продуктовые требования.
 
-## Чистый старт R4
+## Чистый старт: практикум разработки
 
 Полный `setup-analysis-workspace` из репозитория требований уже подготовил
 рядом чистый checkout `sdd-guide-credit-calculator-stage-4-code` на точном

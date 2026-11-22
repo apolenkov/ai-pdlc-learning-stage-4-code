@@ -9,13 +9,20 @@
 | Шаг курса | [Практикум разработки](https://apolenkov.github.io/customdev-learning/guides/d1-delivery.html) |
 | Вход | Принятые требования и tasks в соседнем метарепозитории `sdd-guide-credit-calculator-stage-4-requirements` (Store `sdd-credit-calculator-product-meta`) и выданный `SERVICE_SHA` |
 | Действие | Разработчик в личной ветке реализует принятый Change в `src/` и тестах; требования меняются только в метарепозитории |
-| Результат | PR в свой fork кода с результатом `npm run check` и SHA планирования, начального и итогового кода |
+| Результат | Два запроса в `main` ваших fork: код и тесты — в fork кода, статусы задач — в fork требований; в запросе кода — результат `npm run check` и SHA планирования, начального и итогового кода |
 
 **С чего начать.** На GitHub нажмите **Fork**. Если вы работаете в GitLab, создайте проект через
 **New project → Import project → Repository by URL** и вставьте адрес
-`https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git`. Адрес `origin` оставьте
-адресом upstream, а свой fork добавьте вторым remote: проверка в
-[передаче разработчику](docs/developer-handoff.md) сверяет `origin` с этим адресом.
+`https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git`.
+
+**Отправка результата.** Адрес `origin` оставьте адресом upstream: его сверяет
+[передача разработчику](docs/developer-handoff.md). На GitHub скопируйте адрес своего fork
+(**Code → HTTPS**), добавьте его вторым remote и отправьте личную ветку (или подставьте адрес проекта в GitLab):
+
+```bash
+git remote add fork https://github.com/your_login/sdd-guide-credit-calculator-stage-4-code.git
+git push -u fork course/your_login/stage-4-limit-credit-amount
+```
 
 ## Границы репозиториев
 

@@ -7,9 +7,9 @@ meta. Миграции repo-local planning, archive или истории из R
 
 Организатор передаёт:
 
-- `SERVICE_SHA` из `sdd-guide-credit-calculator-stage-4-code`;
+- `SERVICE_SHA` из `ai-pdlc-learning-stage-4-code`;
 - `PLANNING_SHA` принятого итогового состояния R4 в
-  `sdd-guide-credit-calculator-stage-4-requirements`;
+  `ai-pdlc-learning-stage-4-requirements`;
 - имя разрешаемого `CHANGE`;
 - пути к соседним requirements и уже подготовленному code checkout;
 - явно разрешённые roots сервиса и personal meta для текущей сессии;
@@ -30,8 +30,8 @@ checkout на service pin, выполнил `npm ci` и проверил baselin
 set -eu
 test "$(git rev-parse --show-toplevel)" = "$(pwd -P)"
 META_DIR="$(pwd -P)"
-CODE_DIR="$(dirname "$META_DIR")/sdd-guide-credit-calculator-stage-4-code"
-SERVICE_REPOSITORY='https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git'
+CODE_DIR="$(dirname "$META_DIR")/ai-pdlc-learning-stage-4-code"
+SERVICE_REPOSITORY='https://github.com/apolenkov/ai-pdlc-learning-stage-4-code.git'
 SERVICE_SHA='<40_CHARACTER_SERVICE_SHA>'
 PLANNING_SHA='<40_CHARACTER_ACCEPTED_R4_PLANNING_SHA>'
 CHANGE='<ACCEPTED_CHANGE>'

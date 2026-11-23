@@ -49,11 +49,11 @@ test("developer handoff reuses the prepared canonical checkouts", async () => {
   assert.doesNotMatch(handoff, legacyRepositoryNames);
   assert.equal(
     JSON.parse(manifest).name,
-    "sdd-guide-credit-calculator-stage-4-code"
+    "ai-pdlc-learning-stage-4-code"
   );
   assert.match(
     handoff,
-    /CODE_DIR=.*sdd-guide-credit-calculator-stage-4-code/u
+    /CODE_DIR=.*ai-pdlc-learning-stage-4-code/u
   );
   assert.match(handoff, /Если подготовленной папки кода нет/u);
   assert.equal(handoff.match(/^set -eu$/gmu)?.length, 2);

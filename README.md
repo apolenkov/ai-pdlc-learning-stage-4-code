@@ -6,21 +6,21 @@
 
 | | |
 | --- | --- |
-| Шаг курса | [Практикум разработки](https://apolenkov.github.io/customdev-learning/guides/d1-delivery.html) |
-| Вход | Принятые требования и tasks в соседнем метарепозитории `sdd-guide-credit-calculator-stage-4-requirements` (Store `sdd-credit-calculator-product-meta`) и выданный `SERVICE_SHA` |
+| Шаг курса | [Практикум разработки](https://apolenkov.github.io/ai-pdlc-learning/guides/d1-delivery.html) |
+| Вход | Принятые требования и tasks в соседнем метарепозитории `ai-pdlc-learning-stage-4-requirements` (Store `sdd-credit-calculator-product-meta`) и выданный `SERVICE_SHA` |
 | Действие | Разработчик в личной ветке реализует принятый Change в `src/` и тестах; требования меняются только в метарепозитории |
 | Результат | Два запроса в `main` ваших fork: код и тесты — в fork кода, статусы задач — в fork требований; в запросе кода — результат `npm run check` и SHA планирования, начального и итогового кода |
 
 **С чего начать.** На GitHub нажмите **Fork**. Если вы работаете в GitLab, создайте проект через
 **New project → Import project → Repository by URL** и вставьте адрес
-`https://github.com/apolenkov/sdd-guide-credit-calculator-stage-4-code.git`.
+`https://github.com/apolenkov/ai-pdlc-learning-stage-4-code.git`.
 
 **Отправка результата.** Адрес `origin` оставьте адресом upstream: его сверяет
 [передача разработчику](docs/developer-handoff.md). На GitHub скопируйте адрес своего fork
 (**Code → HTTPS**), добавьте его вторым remote и отправьте личную ветку (или подставьте адрес проекта в GitLab):
 
 ```bash
-git remote add fork https://github.com/your_login/sdd-guide-credit-calculator-stage-4-code.git
+git remote add fork https://github.com/your_login/ai-pdlc-learning-stage-4-code.git
 git push -u fork course/your_login/stage-4-limit-credit-amount
 ```
 
@@ -31,7 +31,7 @@ git push -u fork course/your_login/stage-4-limit-credit-amount
 копируется.
 
 Исходный сервисный baseline сохранён в Git-истории из
-[`sdd-guide-credit-calculator-stage-3`](https://github.com/apolenkov/sdd-guide-credit-calculator-stage-3)
+[`ai-pdlc-learning-stage-3`](https://github.com/apolenkov/ai-pdlc-learning-stage-3)
 на SHA `0e9d67e826acf5f95087be9a5a83ade23421e9b0`. Действующая точка старта R4 —
 отдельный `SERVICE_SHA`, который сообщает организатор.
 
@@ -49,14 +49,14 @@ git push -u fork course/your_login/stage-4-limit-credit-amount
 ## Чистый старт: практикум разработки
 
 Полный `setup-analysis-workspace` из репозитория требований уже подготовил
-рядом чистый checkout `sdd-guide-credit-calculator-stage-4-code` на точном
+рядом чистый checkout `ai-pdlc-learning-stage-4-code` на точном
 `SERVICE_SHA`. Это основной путь: повторно клонировать сервис не нужно. Если
 папки действительно нет, используйте только recovery из
 [передачи разработчику](docs/developer-handoff.md); существующую папку не
 заменяйте и не переключайте.
 
 В этой инструкции `PLANNING_SHA` — полный SHA принятого итогового состояния R4
-в `sdd-guide-credit-calculator-stage-4-requirements`. Это не исходный SHA R3,
+в `ai-pdlc-learning-stage-4-requirements`. Это не исходный SHA R3,
 записанный как provenance, и не `IMPORT_BASE_SHA`, с которого начинался анализ.
 Организатор также передаёт полный `SERVICE_SHA`, имя принятого Change и пути к
 обоим соседним checkout. Store должен быть зарегистрирован заранее.
